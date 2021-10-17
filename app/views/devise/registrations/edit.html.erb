@@ -1,0 +1,126 @@
+<style type="text/css">
+  
+  .login-box {
+    margin-top: 100px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  padding: 40px;
+  transform: translate(-50%, -50%);
+  background: rgba(0,0,0,.5);
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(0,0,0,.6);
+  border-radius: 10px;
+}
+
+.login-box h2 {
+  margin: 0 0 30px;
+  padding: 0;
+  color: #fff;
+  text-align: center;
+}
+
+.login-box .user-box {
+  position: relative;
+}
+
+.login-box .user-box input {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid #fff;
+  outline: none;
+  background: transparent;
+}
+.login-box .user-box label {
+  position: absolute;
+  top:0;
+  left: 0;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  pointer-events: none;
+  transition: .5s;
+}
+.user-{
+  color: white;
+}
+
+</style>
+
+<div class="login-box">
+  
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+  
+
+
+
+
+<div class="user-box">
+
+  <% if resource.avatar.attached? %>
+      <%= image_tag resource.avatar.variant(resize: "100x100!"),class: "rounded-circle" %>
+    <% else %>
+      <p>not yet uploaded</p>
+    <% end %>
+</div>
+<div class="user-box">
+        <%= f.label :name %><br>
+      <%= f.text_field :name,autofocus: true, autocomplete: "name" %>
+</div>
+    <div class="user-box">
+          <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email"%>
+    </div>
+
+<% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+  <% end %>
+
+    <div class="user-box">
+    <%= f.label :password %><br />
+    <%= f.password_field :password, autocomplete: "new-password" %>
+     <% if @minimum_password_length %>
+      <br />
+      <em><%= @minimum_password_length %> characters minimum</em>
+    <% end %> 
+    </div>
+
+      <div class="user-box">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+      </div>
+
+            <div class="user-box">
+    <%= f.label :current_password %><br />
+    <%= f.password_field :current_password, autocomplete: "current-password" %>
+      </div>
+
+        <div class="user-box">
+
+      <%= f.file_field :avatar %> 
+  </div>
+      <br>
+
+      <%= f.submit "Update", class:"btn btn-outline-light" %><br><hr>
+    
+  <% end %><br>
+
+  <p><%= button_to "Delete Account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class:"btn btn-dark" %></p><br>
+  <%= link_to "Back", :back %>
+
+</div>
+
+
+
+
+
+
+
+
+

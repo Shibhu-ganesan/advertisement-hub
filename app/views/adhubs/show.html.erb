@@ -1,0 +1,65 @@
+<style type="text/css">
+  
+  .card{
+    text-align: center;
+    background-color: whitesmoke;
+    color: black;
+    box-shadow: 0 4px 15px 0 black;
+  justify-content: center;
+  align-content: center;
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+  margin-bottom: 20px;
+  }
+
+</style>
+
+
+<div class="container"><br><br><br>
+  <p id="notice"><%= notice %></p><br>
+
+  
+
+    <div class="card my-1">
+    <div class="card-body">
+      <% unless !@adhub.image.persisted? %>
+     <%= image_tag(@adhub.image, width:'500px',height:'500px') %>
+     <% end %>
+      <p>
+      <strong>Title:</strong>
+      <%= @adhub.title %>
+    </p>
+    <p>
+      <strong>Description:</strong>
+      <%= @adhub.description %>
+    </p>
+      <p>
+      <strong>Created at:</strong>
+      <%= @adhub.created_at %>
+    </p><br>
+    <% if @adhub.user==current_user %>
+      <%= link_to 'Edit', edit_adhub_path(@adhub),class:'btn btn-secondary' %> 
+      <%= link_to 'Destroy', @adhub, :method => :delete, data: { confirm: 'Are you sure?' },class:"btn btn-dark" %>
+      <% end %>
+   
+    </div>
+  </div>
+  <br>
+  <div class="card" style="text-align:left"><div class="card-body">
+        <p class="font-weight-bold">Comment</p>
+    
+    <%= form_with(model: [@adhub, @adhub.comments.build]) do |f| %>
+      <div class="form-group">
+        <%= f.label 'New comment' %>
+        <%= f.text_area :comment, class: 'form-control' %>
+
+      </div><br>
+      <%= f.submit 'Submit', class: 'btn btn-primary' %>
+    <% end %>
+    <%= render @adhub.comments %>
+  </div></div>
+
+</div>
+
+

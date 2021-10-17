@@ -1,0 +1,105 @@
+
+
+
+
+
+
+<style type="text/css">
+  
+  .login-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  padding: 40px;
+  transform: translate(-50%, -50%);
+  background: rgba(0,0,0,.5);
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(0,0,0,.6);
+  border-radius: 10px;
+}
+
+.login-box h2 {
+  margin: 0 0 30px;
+  padding: 0;
+  color: #fff;
+  text-align: center;
+}
+
+.login-box .user-box {
+  position: relative;
+}
+
+.login-box .user-box input {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid #fff;
+  outline: none;
+  background: transparent;
+}
+.login-box .user-box label {
+  position: absolute;
+  top:0;
+  left: 0;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  pointer-events: none;
+  transition: .5s;
+}
+.user-{
+  color: white;
+}
+
+</style>
+
+<div class="login-box">
+  
+  <%= form_with(model: adhub) do |form| %>
+    <% if adhub.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(adhub.errors.count, "error") %> prohibited this adhub from being saved:</h2>
+
+        <ul>
+          <% adhub.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="user-box">
+      <%= form.label :title %><br>
+      <%= form.text_field :title %>
+      
+    </div>
+    <div class="user-box">
+      <%= form.label :description %><br>
+      <%= form.text_field :description %>
+    </div>
+      <div class="user-">
+        <%= form.label :image %><br>
+      <%= form.file_field :image,class:"form-control" %>
+      </div>
+      <%= form.number_field :user_id,value:current_user.id,type: :hidden %>
+      
+
+
+      <br>
+
+      <%= form.submit 'Submit Advertisement',class:'btn btn-outline-light'%><br>
+    
+  <% end %><br>
+  <%= link_to 'Show', @adhub %> <br>
+<%= link_to 'Back', adhubs_path %>
+
+</div>
+
+
+
+
+
+
