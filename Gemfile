@@ -16,7 +16,7 @@ gem 'devise', '~> 4.8'
 gem 'image_processing', '~> 1.2'
 
 gem 'bootsnap', '>= 1.4.4', require: false
-gem 'sqlite3', '~> 1.4'
+gem 'pg'
 
 
 
